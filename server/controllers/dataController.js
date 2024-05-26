@@ -18,10 +18,12 @@ exports.listTransactions = async (req, res) => {
         const { month, search, page = 1, perPage = 10 } = req.query;
 
         let filter = {};
+        
         if (month) {
             const monthFilter = getMonthFilter(month);
             filter = { ...filter, ...monthFilter };
         }
+        if (page <= 0) return res.status(400).json({ error: "Page query shouldn't be less than 0" });
 
         const searchFilter = search
             ? {
