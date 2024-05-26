@@ -6,7 +6,7 @@ const Table = () => {
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
-    const [selectedMonth, setSelectedMonth] = useState(null);
+    const [selectedMonth, setSelectedMonth] = useState(3);
     const [page, setPage] = useState(1);
 
     const fetchData = async () => {
@@ -14,7 +14,7 @@ const Table = () => {
 
         if (searchTerm) queryParams.push(`search=${encodeURIComponent(searchTerm)}`);
         if (selectedMonth !== null) queryParams.push(`month=${selectedMonth}`);
-        
+
         queryParams.push(`page=${page}`);
         const queryString = queryParams.join('&');
 
@@ -29,13 +29,16 @@ const Table = () => {
     };
 
     const handleMonthData = (e) => {
-        const month = parseInt(e.target.value, 10);
-        if (month === -1) {
+        const month = e.target.value;
+        if (month === "") {
             setPage(1);
-            setSelectedMonth(null);
-        } else if (month >= 1 && month <= 12) {
-            setPage(1);
-            setSelectedMonth(month);
+            setSelectedMonth("");
+        } else {
+            const monthValue = parseInt(month, 10);
+            if (monthValue >= 1 && monthValue <= 12) {
+                setPage(1);
+                setSelectedMonth(monthValue);
+            }
         }
     };
 
@@ -63,8 +66,8 @@ const Table = () => {
                             setSearchTerm(e.target.value);
                         }}
                     />
-                    <select onChange={handleMonthData}>
-                        <option value="-1">{selectedMonth !== null ? "Clear" : "Select"} Month</option>
+                    <select value={selectedMonth} onChange={handleMonthData}>
+                        <option value="">{selectedMonth ? "Clear" : "Select"} Month</option>
                         {months.map((item, id) => (
                             <option key={id} value={id + 1}>{item}</option>
                         ))}

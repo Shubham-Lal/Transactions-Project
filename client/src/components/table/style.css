@@ -1,5 +1,5 @@
 #table {
-    margin: 20px auto 0 auto;
+    margin-top: 20px;
 }
 
 #table .parameter,
@@ -55,8 +55,8 @@
     }
 }
 
-@media screen and (min-width: 1024px) {
-    #table {
-        width: 1000px;
+@media screen and (max-width: 280px) {
+    #table .parameter {
+        flex-direction: column;
     }
 }
