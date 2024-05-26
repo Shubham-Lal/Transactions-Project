@@ -1,0 +1,62 @@
+#table {
+    margin: 20px auto 0 auto;
+}
+
+#table .parameter,
+#table .options {
+    margin: 10px 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#table .table-container {
+    overflow-x: auto;
+    border: 2px solid black;
+}
+
+#table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#table table th,
+#table table td {
+    padding: 10px 20px;
+    border-bottom: 1px solid gray;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#table table tbody tr td:nth-child(2),
+#table table tbody tr td:nth-child(3) {
+    text-align: left;
+}
+
+#table table th {
+    border-bottom: 2px solid black;
+}
+
+#table table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+@media screen and (max-width: 1024px) {
+    #table table th:nth-child(2) {
+        padding: 10px 100px;
+    }
+
+    #table table th:nth-child(3) {
+        padding: 10px 200px;
+    }
+
+    #table table tbody tr td {
+        width: 150px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    #table {
+        width: 1000px;
+    }
+}
