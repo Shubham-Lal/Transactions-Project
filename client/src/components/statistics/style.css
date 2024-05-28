@@ -1,10 +1,8 @@
-#statistics {
-    margin: 10px 0 20px 0;
-    overflow-x: auto;
+#statistics select {
+    margin: 5px 0 10px 0;
 }
 
 #statistics table {
-    min-width: 100%;
     border: 2px solid black;
 }
 

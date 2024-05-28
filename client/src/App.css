@@ -13,6 +13,16 @@ body {
   font-style: normal;
 }
 
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+main h1 {
+  text-align: center;
+}
+
 @media screen and (min-width: 1024px) {
   main {
     margin: 0 auto;

@@ -1,7 +1,7 @@
 const BarChart = () => {
     return (
         <div>
-            BarChart
+            Under development
         </div>
     )
 }

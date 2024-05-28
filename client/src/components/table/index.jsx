@@ -13,7 +13,7 @@ const Table = () => {
         const queryParams = [];
 
         if (searchTerm) queryParams.push(`search=${encodeURIComponent(searchTerm)}`);
-        if (selectedMonth !== null) queryParams.push(`month=${selectedMonth}`);
+        if (selectedMonth) queryParams.push(`month=${selectedMonth}`);
 
         queryParams.push(`page=${page}`);
         const queryString = queryParams.join('&');
@@ -55,7 +55,7 @@ const Table = () => {
     }, [searchTerm, selectedMonth, page]);
 
     return (
-        loading ? <p>Fetching data...</p> : (
+        loading ? <p style={{ textAlign: 'center' }}>Fetching data...</p> : (
             <div id='table'>
                 <div className='parameter'>
                     <input

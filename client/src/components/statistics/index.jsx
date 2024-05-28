@@ -30,35 +30,35 @@ const Statistics = () => {
     }, [selectedMonth]);
 
     return (
-        <div style={{ width: '100%', overflowX: 'auto' }}>
-            <div style={{ width: '400px', margin: '0 auto' }}>
-                <select value={selectedMonth} onChange={handleMonthData}>
-                    {months.map((item, id) => (
-                        <option key={id} value={id + 1}>{item}</option>
-                    ))}
-                </select>
-                {loading ? <p>Fetching data...</p> : (
-                    <div id='statistics'>
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td>Total sale</td>
-                                    <td>{Number(data.totalSaleAmount).toFixed(2)}</td>
-                                </tr>
-                                <tr>
-                                    <td>Total sold item</td>
-                                    <td>{data.soldItemsCount}</td>
-                                </tr>
-                                <tr>
-                                    <td>Total not sold item</td>
-                                    <td>{data.notSoldItemsCount}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                )}
+        loading ? <p style={{ textAlign: 'center' }}>Fetching data...</p> : (
+            <div id='statistics' style={{ width: '100%', overflowX: 'auto' }}>
+                <div style={{ width: 'fit-content', margin: '0 auto' }}>
+                    <select value={selectedMonth} onChange={handleMonthData}>
+                        {months.map((item, id) => (
+                            <option key={id} value={id + 1}>{item}</option>
+                        ))}
+                    </select>
+                </div>
+                <div style={{ width: '100%', overflowX: 'auto' }}>
+                    <table style={{ width: '400px', margin: '0 auto' }}>
+                        <tbody>
+                            <tr>
+                                <td>Total sale</td>
+                                <td>{Number(data.totalSaleAmount).toFixed(2)}</td>
+                            </tr>
+                            <tr>
+                                <td>Total sold item</td>
+                                <td>{data.soldItemsCount}</td>
+                            </tr>
+                            <tr>
+                                <td>Total not sold item</td>
+                                <td>{data.notSoldItemsCount}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
+        )
     )
 }
 
