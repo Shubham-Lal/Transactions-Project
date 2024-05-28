@@ -18,7 +18,7 @@ exports.listTransactions = async (req, res) => {
         const { month, search, page = 1, perPage = 10 } = req.query;
 
         let filter = {};
-        
+
         if (month) {
             const monthFilter = getMonthFilter(month);
             filter = { ...filter, ...monthFilter };
@@ -38,6 +38,7 @@ exports.listTransactions = async (req, res) => {
         filter = { $and: [filter, searchFilter] };
 
         const transactions = await Product.find(filter)
+            .sort({ _id: 1 })
             .skip((page - 1) * perPage)
             .limit(parseInt(perPage));
 
