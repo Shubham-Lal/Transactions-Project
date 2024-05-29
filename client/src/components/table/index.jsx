@@ -55,76 +55,73 @@ const Table = () => {
     }, [searchTerm, selectedMonth, page]);
 
     return (
-        loading ? <p style={{ textAlign: 'center' }}>Fetching data...</p> : (
-            <div id='table'>
-                <div className='parameter'>
-                    <input
-                        placeholder='Search Transactions'
-                        value={searchTerm}
-                        onChange={(e) => {
-                            setPage(1);
-                            setSearchTerm(e.target.value);
-                        }}
-                    />
-                    <select value={selectedMonth} onChange={handleMonthData}>
-                        <option value="">{selectedMonth ? "Clear" : "Select"} Month</option>
-                        {months.map((item, id) => (
-                            <option key={id} value={id + 1}>{item}</option>
-                        ))}
-                    </select>
-                </div>
-
-
-                <div className='table-container'>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Title</th>
-                                <th>Description</th>
-                                <th>Price</th>
-                                <th>Category</th>
-                                <th>Sold</th>
-                                <th>Image</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {data.length === 0 ? (
-                                <tr>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                </tr>
-                            ) : data.map(item => (
-                                <tr key={item._id}>
-                                    <td>{item.id}</td>
-                                    <td>{item.title}</td>
-                                    <td>{item.description}</td>
-                                    <td>{Number(item.price).toFixed(2)}</td>
-                                    <td>{item.category}</td>
-                                    <td>{item.sold ? 'Sold' : 'Unsold'}</td>
-                                    <td><img src={item.image} style={{ width: '50px', height: '50px', objectFit: 'contain' }} alt={item.title} /></td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-
-                <div className='options'>
-                    <p>Page No: {page}</p>
-                    <div>
-                        <button onClick={() => handlePageChange("previous")}>Previous</button>
-                        -
-                        <button onClick={() => handlePageChange("next")}>Next</button>
-                    </div>
-                    <p>Per Page: 10</p>
-                </div>
+        <div id='table'>
+            <div className='parameter'>
+                <input
+                    placeholder='Search Transactions'
+                    value={searchTerm}
+                    onChange={(e) => {
+                        setPage(1);
+                        setSearchTerm(e.target.value);
+                    }}
+                />
+                <select value={selectedMonth} onChange={handleMonthData}>
+                    <option value="">{selectedMonth ? "Clear" : "Select"} Month</option>
+                    {months.map((item, id) => (
+                        <option key={id} value={id + 1}>{item}</option>
+                    ))}
+                </select>
             </div>
-        )
+
+
+            <div className='table-container'>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>Category</th>
+                            <th>Sold</th>
+                            <th>Image</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {loading || data.length === 0 ? (
+                            <tr>
+                                <td>{loading ? 'Fetching...' : '-'}</td>
+                                <td>{loading ? 'Fetching...' : '-'}</td>
+                                <td>{loading ? 'Fetching...' : '-'}</td>
+                                <td>{loading ? 'Fetching...' : '-'}</td>
+                                <td>{loading ? 'Fetching...' : '-'}</td>
+                                <td>{loading ? 'Fetching...' : '-'}</td>
+                            </tr>
+                        ) : data.map(item => (
+                            <tr key={item._id}>
+                                <td>{item.id}</td>
+                                <td>{item.title}</td>
+                                <td>{item.description}</td>
+                                <td>{Number(item.price).toFixed(2)}</td>
+                                <td>{item.category}</td>
+                                <td>{item.sold ? 'Sold' : 'Unsold'}</td>
+                                <td><img src={item.image} style={{ width: '50px', height: '50px', objectFit: 'contain' }} alt={item.title} /></td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+
+            <div className='options'>
+                <p>Page No: {page}</p>
+                <div>
+                    <button onClick={() => handlePageChange("previous")}>Previous</button>
+                    -
+                    <button onClick={() => handlePageChange("next")}>Next</button>
+                </div>
+                <p>Per Page: 10</p>
+            </div>
+        </div>
     )
 }
 
